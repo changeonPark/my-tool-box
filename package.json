@@ -1,0 +1,14 @@
+{
+  "name": "my-tool-box",
+  "version": "1.0.0",
+  "description": "나의 애착 도구모음",
+  "main": "index.ts",
+  "repository": "https://github.com/changeonPark/my-tool-box.git",
+  "author": "changeonPark <qkrcksrjs@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  }
+}
