@@ -12,6 +12,12 @@ export type ConvertSnakeToCamelCase<T> = T extends any[]
     }
   : T
 
+function toCamelCase(str: string): string {
+  return str.replace(/([-_][a-z])/gi, ($1) =>
+    $1.toUpperCase().replace("-", "").replace("_", "")
+  )
+}
+
 function convertToCamelCaseInternal<T>(obj: T): ConvertSnakeToCamelCase<T> {
   if (Array.isArray(obj)) {
     return obj.map(convertToCamelCaseInternal) as ConvertSnakeToCamelCase<T>
@@ -25,12 +31,6 @@ function convertToCamelCaseInternal<T>(obj: T): ConvertSnakeToCamelCase<T> {
     }, {} as Record<string, any>) as ConvertSnakeToCamelCase<T>
   }
   return obj as ConvertSnakeToCamelCase<T>
-}
-
-function toCamelCase(str: string): string {
-  return str.replace(/([-_][a-z])/gi, ($1) =>
-    $1.toUpperCase().replace("-", "").replace("_", "")
-  )
 }
 
 export function convertToCamelCase<T>(obj: T): ConvertSnakeToCamelCase<T> {
@@ -54,3 +54,17 @@ export function convertToCamelCase<T>(obj: T): ConvertSnakeToCamelCase<T> {
     resultFiles: string[];
  *  }>
  */
+
+interface Example {
+  result: number
+  base_url: string
+  resultFiles: string[]
+}
+
+const EXAMPLE: Example = {
+  result: 0,
+  base_url: "https://cgp.co.kr",
+  resultFiles: ["e", "x", "l"],
+}
+
+console.log(convertToCamelCase(EXAMPLE))
